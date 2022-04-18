@@ -1,8 +1,39 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net5.0;net6.0;netcoreapp3.1;netstandard2.1;</TargetFrameworks>
+		<ImplicitUsings>false</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<LangVersion>8.0</LangVersion>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<Version>1.0.1</Version>
+		<FileVersion>$(Version)</FileVersion>
+		<Authors>David Walker aka Grax32</Authors>
+		<Company>Grax32</Company>
+		<Product>PhilTemplate</Product>
+		<Deterministic>true</Deterministic>
+		<Description>C# LogicLess Template Engine</Description>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<Target Name="SetSourceRevisionId" BeforeTargets="InitializeSourceControlInformation">
+		<Exec
+		  Command="git describe --long --always --dirty --exclude=* --abbrev=8"
+		  ConsoleToMSBuild="True"
+		  StandardOutputImportance="low"
+		  StandardErrorImportance="high"
+		  IgnoreExitCode="False">
+			<Output PropertyName="GitVersion" TaskParameter="ConsoleOutput"/>
+		</Exec>
+		<PropertyGroup>
+			<InformationalVersion>$(Version).$(GitVersion)</InformationalVersion>
+		</PropertyGroup>
+	</Target>
+
 </Project>

@@ -1,7 +1,9 @@
-﻿using System.Linq.Expressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Reflection;
 
-namespace VorteonTemplateEngine
+namespace PhilTemplate
 {
     public class TemplateCompiler
     {

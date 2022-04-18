@@ -1,7 +1,8 @@
 ﻿
+using System;
 using System.Text;
 
-namespace VorteonTemplateEngine
+namespace PhilTemplate
 {
     public static class TemplateOnDemand
     {

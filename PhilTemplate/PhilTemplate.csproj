@@ -14,6 +14,15 @@
 		<Deterministic>true</Deterministic>
 		<Description>C# LogicLess Template Engine</Description>
 	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' != 'Debug' ">
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<ItemGroup Condition=" '$(Configuration)' != 'Debug' ">
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="..\README.md">

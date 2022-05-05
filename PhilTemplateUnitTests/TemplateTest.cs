@@ -78,5 +78,41 @@ expected: " + expected +
                      ThrowIfNoMatch(templateItem.Expected, actual);
                  });
         }
+
+#if DEBUG
+        [TestMethod]
+        public void TestOnDemandTemplates2()
+        {
+            var data = GetReplacementData();
+            var templatesAndResults = GetTestTemplates();
+
+            Enumerable.Range(0, 10000)
+                .Select(templateItem => new { templatesAndResults })
+                .SelectMany(item => item.templatesAndResults)
+                .ToList()
+                 .ForEach(templateItem =>
+                 {
+                     var actual = TemplateOnDemand2.ApplyStringTemplate(templateItem.Template, key => data![key]);
+                     ThrowIfNoMatch(templateItem.Expected, actual);
+                 });
+        }
+#endif
+
+        [TestMethod]
+        public void TestOnDemandTemplates1()
+        {
+            var data = GetReplacementData();
+            var templatesAndResults = GetTestTemplates();
+
+            Enumerable.Range(0, 10000)
+                .Select(templateItem => new { templatesAndResults })
+                .SelectMany(item => item.templatesAndResults)
+                .ToList()
+                 .ForEach(templateItem =>
+                 {
+                     var actual = TemplateOnDemand.ApplyStringTemplate(templateItem.Template, key => data![key]);
+                     ThrowIfNoMatch(templateItem.Expected, actual);
+                 });
+        }
     }
 }
